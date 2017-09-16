@@ -7,7 +7,10 @@ def ruby(filename='code.rb'):
     print 'Running Ruby code:'
     p = Popen(['ruby', filename], stdin=PIPE, stdout=PIPE, stderr=STDOUT)
     output, errors = p.communicate()
-    print(output)
+    #print(output)
+    if p.returncode != 0:
+        errors = output
+        output = None
     return (output, errors)
 
 def make_challenge_file(text, ruby_file):
@@ -19,3 +22,6 @@ def make_challenge_file(text, ruby_file):
 
         with open(CHALLENGE_FILE_POST) as r:
             f.write(r.read())
+
+out, err = ruby('random.rb')
+print out
