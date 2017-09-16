@@ -101,7 +101,7 @@ def main():
         # for linda
         if not prod:
             return render_template('results_challenge.html', title="results",
-                                    image_src=url_for('static', filename='images/uploads/current'),
+                                    image_src=url_for('static', filename='images/uploads/challenge_2'),
                                     output='Hello World',
                                     status='Failure')
 
