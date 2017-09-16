@@ -54,7 +54,6 @@ def main():
 
     @app.route("/results/<filename>")
     def results(filename):
-
         # for linda
         if not prod:
             return render_template('results.html', title="results",
@@ -84,6 +83,54 @@ def main():
                                 image_src=url_for('static', filename='images/uploads/current'),
                                 output=out,
                                 status=status)
+
+    @app.route("/challenge", methods=['GET', 'POST'])
+    def challenge_2():
+        if request.method == 'POST':
+            f = request.files['file']
+            if f and allowed_file(f.filename):
+                filename = secure_filename('challenge_2')
+                f.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+                return redirect(url_for('results_challenge', filename=filename))
+
+        return render_template('challenge_2.html', tittle='Challenge')
+
+    @app.route("/results/challenge/<filename>")
+    def results_challenge(filename):
+        # for linda
+        if not prod:
+            return render_template('results.html', title="results",
+                                    image_src=url_for('static', filename='images/uploads/current'),
+                                    output='Hello World',
+                                    status='Success')
+
+        # process text first
+        filename = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+        text = gvc.get_text(filename)
+        ruby_f = os.path.join(app.config['UPLOAD_FOLDER'], RUBY_FILE)
+
+        make_challenge_file(text, ruby_f)
+        with open(ruby_f, 'w') as f:
+            f.write(text)
+
+        out, err = ruby(ruby_f)
+        if err:
+            status = 'Failure'
+            resp = err
+        else:
+            status = 'Failure'
+            resp = out
+
+        print out
+        print err
+        return render_template('results.html', title="results",
+                                image_src=url_for('static', filename='images/uploads/current'),
+                                output=out,
+                                status=status)
+
+    @app.route("/challenge", methods=['GET', 'POST'])
+    def challenge_2():
+        if request.method == 'POST':
 
     app.run(host='0.0.0.0', port=80)
 
