@@ -46,7 +46,7 @@ def main():
             f = request.files['file']
             if f and allowed_file(f.filename):
                 filename = secure_filename('current')
-                f.save(os.path.join(app.config['TMP_FOLDER'], filename))
+                f.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
                 return redirect(url_for('results', filename=filename))
 
         # if request is a get
@@ -54,10 +54,18 @@ def main():
 
     @app.route("/results/<filename>")
     def results(filename):
+
+        # for linda
+        if not prod:
+            return render_template('results.html', title="results",
+                                    image_src=url_for('static', filename='images/uploads/current'),
+                                    output='Hello World',
+                                    status='Success')
+
         # process text first
-        filename = os.path.join(app.config['TMP_FOLDER'], filename)
+        filename = os.path.join(app.config['UPLOAD_FOLDER'], filename)
         text = gvc.get_text(filename)
-        ruby_f = os.path.join(app.config['TMP_FOLDER'], RUBY_FILE)
+        ruby_f = os.path.join(app.config['UPLOAD_FOLDER'], RUBY_FILE)
 
         with open(ruby_f, 'w') as f:
             f.write(text)
