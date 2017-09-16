@@ -38,8 +38,8 @@ def main():
         if request.method == 'POST':
             f = request.files['file']
             if f and allowed_file(f.filename):
-                filename = secure_filename(f.filename)
-                f.save(os.path.join(app.config['TMP_FOLDER'], filename))
+                filename = os.path.join(app.config['TMP_FOLDER'], secure_filename(f.filename))
+                f.save(filename)
                 return redirect(url_for('results', filename=filename))
 
         # if request is a get
@@ -59,7 +59,7 @@ def main():
         print err
         return json.dumps({"out": out, "err": err}), 200
 
-    app.run()
+    app.run(host='0.0.0.0', port=80)
 
 if __name__ == '__main__':
     main()
