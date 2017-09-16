@@ -13,9 +13,12 @@ def main():
     # write gray file to a file
     #cv2.imwrite('gray.jpg', gray)
 
-    # try pytesseract
-    text = pytesseract.image_to_string(Image.open('temp.jpg'))
-    print(text)
+    # try inverted
+    negate_g = cv2.bitwise_not(gray)
+    cv2.imwrite('inverted_gray.jpg', negate_g)
+
+    text = pytesseract.image_to_string(Image.open('inverted_gray.jpg'))
+    import pdb ; pdb.set_trace()
 
 if __name__ == '__main__':
     main()
