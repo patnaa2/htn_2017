@@ -123,7 +123,7 @@ def main():
         print out
         print err
         return render_template('results_challenge.html', title="results",
-                                image_src=url_for('static', filename='images/uploads/current'),
+                                image_src=url_for('static', filename='images/uploads/challenge_2'),
                                 output=out,
                                 status=status)
 
