@@ -128,10 +128,6 @@ def main():
                                 output=out,
                                 status=status)
 
-    @app.route("/challenge", methods=['GET', 'POST'])
-    def challenge_2():
-        if request.method == 'POST':
-
     app.run(host='0.0.0.0', port=80)
 
 if __name__ == '__main__':
