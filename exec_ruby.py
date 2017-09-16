@@ -23,5 +23,3 @@ def make_challenge_file(text, ruby_file):
         with open(CHALLENGE_FILE_POST) as r:
             f.write(r.read())
 
-out, err = ruby('random.rb')
-print out
