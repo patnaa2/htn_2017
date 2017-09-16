@@ -13,7 +13,7 @@ class GoogleVisionClient(object):
         image = self._vision_client.image(content=content)
 
         texts = image.detect_text()
-        return self.cleanse_text(texts[0].description)
+        return texts[0].description
 
     @classmethod
     def cleanse_text(cls, text):

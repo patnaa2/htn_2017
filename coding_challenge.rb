@@ -4,8 +4,9 @@
 
 
 def fizzbuzz(num)
-puts "fizz" if num % 3 == 0
-puts "buzz" if num % 5 == 0
+puts "fizz" if num%3 ==0
+
+puts "buzz" if num % 5 ==0
 end
 
 
