@@ -5,10 +5,8 @@ from pytesseract import *
 FILENAME = 'picture.jpg'
 
 def main():
-    #image = cv2.imread(FILENAME)
-    #gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
-    img = Image.open(FILENAME).convert('LA')
-    img.save('temp.jpg')
+    image = cv2.imread(FILENAME)
+    gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 
     # write gray file to a file
     #cv2.imwrite('gray.jpg', gray)
