@@ -9,15 +9,20 @@ import sys
 # set python path to current folder to local folder to add ruby lib
 sys.path.insert(0, os.getcwd())
 from exec_ruby import *
+from google_vision_api import GoogleVisionClient
 
 UPLOAD_FOLDER = 'static/images/uploads'
 TMP_FOLDER = 'tmp'
+RUBY_FILE = 'ruby_tmp.rb'
 ALLOWED_EXTENSIONS = set(['jpg','jpeg', 'png'])
 
 def main():
     app = Flask(__name__)
     app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
     app.config['TMP_FOLDER'] = TMP_FOLDER
+
+    # global variable for google client
+    gvc = GoogleVisionClient()
 
     if not os.path.exists(UPLOAD_FOLDER):
         os.makedirs(UPLOAD_FOLDER)
@@ -42,7 +47,14 @@ def main():
 
     @app.route("/results/<filename>")
     def results(filename):
-        out, err = ruby(filename)
+        # process text first
+        text = gvc.get_text(filename)
+        ruby_f = os.path.join(app.config['TMP_FOLDER'], RUBY_FILE)
+
+        with open(ruby_f, 'w') as f:
+            f.write(text)
+
+        out, err = ruby(ruby_f)
         print out
         print err
         return json.dumps({"out": out, "err": err}), 200
