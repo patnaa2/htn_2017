@@ -6,10 +6,14 @@ import os
 import subprocess
 import sys
 
+prod = False
+
 # set python path to current folder to local folder to add ruby lib
 sys.path.insert(0, os.getcwd())
 from exec_ruby import *
-from google_vision_api import GoogleVisionClient
+
+if prod:
+    from google_vision_api import GoogleVisionClient
 
 UPLOAD_FOLDER = 'static/images/uploads'
 TMP_FOLDER = 'tmp'
@@ -22,7 +26,10 @@ def main():
     app.config['TMP_FOLDER'] = TMP_FOLDER
 
     # global variable for google client
-    gvc = GoogleVisionClient()
+    if prod:
+        gvc = GoogleVisionClient()
+    else:
+        gvc = None
 
     if not os.path.exists(UPLOAD_FOLDER):
         os.makedirs(UPLOAD_FOLDER)
