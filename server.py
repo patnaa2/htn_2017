@@ -38,7 +38,7 @@ def main():
         if request.method == 'POST':
             f = request.files['file']
             if f and allowed_file(f.filename):
-                filename = secure_filename(f.filename)
+                filename = secure_filename('current')
                 f.save(os.path.join(app.config['TMP_FOLDER'], filename))
                 return redirect(url_for('results', filename=filename))
 
