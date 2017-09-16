@@ -14,17 +14,29 @@
 	<div class="col-lg-5">
 	</div>
 	<div class="col-lg-2">
-	    <div class="alert alert-success text-center" role="alert">
-	  		<strong class='lead'>{{status}}</strong>
+	    <div id=status_div class="alert alert-danger text-center" role="alert">
+	  		<strong id=status class='lead'>{{status}}</strong>
 		</div>
 		<br>
 		<br>
-		<button type="button" class="btn btn-primary btn-lg text-center">Next coding challenge >></button>
+		<button type="button" id="next" class="btn btn-primary btn-lg text-center" style="display:none;">Next coding challenge >></button>
 	</div>
 	<div class="col-lg-5">
 	</div>
 	</center>
 	</div>
     </center>
-    
+
+    <script>
+        $(document).ready(function(){
+            var status_var = $('#status').text();
+            if (status_var === "Success") {
+                $('#status_div').removeClass("alert-danger").addClass("alert-success");
+                $('#next').css("display", "block");
+            }
+        });
+    </script>
+
 {% endblock %}
+
+

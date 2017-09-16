@@ -102,7 +102,7 @@ def main():
             return render_template('results_challenge.html', title="results",
                                     image_src=url_for('static', filename='images/uploads/current'),
                                     output='Hello World',
-                                    status='Success')
+                                    status='Failure')
 
         # process text first
         filename = os.path.join(app.config['UPLOAD_FOLDER'], filename)
