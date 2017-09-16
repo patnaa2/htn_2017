@@ -13,4 +13,17 @@ class GoogleVisionClient(object):
         image = self._vision_client.image(content=content)
 
         texts = image.detect_text()
-        return texts[0].description
+        return self.cleanse_text(texts[0].description)
+
+    @classmethod
+    def cleanse_text(cls, text):
+        text = text.encode('ascii', 'ignore')
+        cleansed = []
+
+        for word in text.split():
+            if word == "duts":
+                word = "puts"
+
+            cleansed.append(word)
+
+        return " ".join(cleansed)
