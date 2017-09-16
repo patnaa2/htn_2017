@@ -18,12 +18,26 @@ class GoogleVisionClient(object):
     @classmethod
     def cleanse_text(cls, text):
         text = text.encode('ascii', 'ignore')
+
+        LOWER_ALL = False
+        if all([w.isupper() for w in text.split()]):
+            LOWER_ALL = True
+
         cleansed = []
 
         for word in text.split():
             if word == "duts":
                 word = "puts"
 
+            if LOWER_ALL:
+                word = word.lower()
+
             cleansed.append(word)
 
         return " ".join(cleansed)
+
+if __name__ == "__main__":
+    gvc = GoogleVisionClient()
+    x = gvc.get_text('static/image/ruby-helloworld.jpg')
+    print x
+    import pdb ; pdb.set_trace()
