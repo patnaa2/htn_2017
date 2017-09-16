@@ -1,14 +1,16 @@
 import io
 from google.cloud import vision
 
-vision_client = vision.Client()
+class GoogleVisionClient(object):
 
-with io.open('helloworld3.jpg', 'rb') as image_file:
-    content = image_file.read()
+    def __init__(self):
+        self._vision_client = vision.Client()
 
-image = vision_client.image(content=content)
+    def get_text(self, filename):
+        with io.open(filename, 'rb') as image_file:
+            content = image_file.read()
 
-texts = image.detect_text()
-print('Texts:')
+        image = self._vision_client.image(content=content)
 
-print(texts[0].description)
+        texts = image.detect_text()
+        return texts[0].description
