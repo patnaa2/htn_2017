@@ -25,9 +25,15 @@ class GoogleVisionClient(object):
 
         cleansed = []
 
+        expecting_quotes = False
+
         for word in text.split():
             if word == "duts":
                 word = "puts"
+                expecting_quotes = True
+
+            if expecting_quotes and '"' not in word:
+                cleansed.append('"')
 
             if LOWER_ALL:
                 word = word.lower()
