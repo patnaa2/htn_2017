@@ -18,6 +18,7 @@ if prod:
 UPLOAD_FOLDER = 'static/images/uploads'
 TMP_FOLDER = 'tmp'
 RUBY_FILE = 'ruby_tmp.rb'
+RUBY_CHALLENGE_FILE = 'ruby_challenge_tmp.rb'
 ALLOWED_EXTENSIONS = set(['jpg','jpeg', 'png'])
 
 def main():
@@ -74,7 +75,7 @@ def main():
             status = 'Failure'
             resp = err
         else:
-            status = 'Failure'
+            status = 'Success'
             resp = out
 
         print out
@@ -95,11 +96,10 @@ def main():
 
         return render_template('challenge_2.html', title='Challenge')
 
-    @app.route("/results/challenge/<filename>")
     def results_challenge(filename):
         # for linda
         if not prod:
-            return render_template('results.html', title="results",
+            return render_template('results_challenge.html', title="results",
                                     image_src=url_for('static', filename='images/uploads/current'),
                                     output='Hello World',
                                     status='Success')
@@ -107,23 +107,21 @@ def main():
         # process text first
         filename = os.path.join(app.config['UPLOAD_FOLDER'], filename)
         text = gvc.get_text(filename)
-        ruby_f = os.path.join(app.config['UPLOAD_FOLDER'], RUBY_FILE)
+        ruby_f = os.path.join(app.config['UPLOAD_FOLDER'], RUBY_CHALLENGE_FILE)
 
         make_challenge_file(text, ruby_f)
-        with open(ruby_f, 'w') as f:
-            f.write(text)
 
         out, err = ruby(ruby_f)
         if err:
             status = 'Failure'
             resp = err
         else:
-            status = 'Failure'
+            status = 'Success'
             resp = out
 
         print out
         print err
-        return render_template('results.html', title="results",
+        return render_template('results_challenge.html', title="results",
                                 image_src=url_for('static', filename='images/uploads/current'),
                                 output=out,
                                 status=status)
