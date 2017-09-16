@@ -48,6 +48,7 @@ def main():
     @app.route("/results/<filename>")
     def results(filename):
         # process text first
+        filename = os.path.join(app.config['TMP_FOLDER'], filename)
         text = gvc.get_text(filename)
         ruby_f = os.path.join(app.config['TMP_FOLDER'], RUBY_FILE)
 
@@ -59,7 +60,7 @@ def main():
         print err
         return json.dumps({"out": out, "err": err}), 200
 
-    app.run()
+    app.run(host='0.0.0.0', port=80)
 
 if __name__ == '__main__':
     main()
