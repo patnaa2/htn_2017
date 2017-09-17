@@ -17,7 +17,5 @@ def make_challenge_file(text, ruby_file):
 
         f.write(text)
 
-        with open(CHALLENGE_FILE_PRE) as r:
+        with open(CHALLENGE_FILE_POST) as r:
             f.write(r.read())
-
-

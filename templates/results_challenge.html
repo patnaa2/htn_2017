@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+{% block body %}
+	
+	<br><p style="text-align: left;"># Coding Challenge: <br>
+        # Print Fizz if number is divisible by 3 <br>
+        # Print Buzz if number is divisible by 5 <br>
+        <br>
+        def fizzbuzz(num) <br>
+        # Write Code Here   <br>
+		</p>
+    <center>
+    	<img src='{{image_src}}' style='max-width:500px; max-height:400px; image-orientation: from-image;'>
+	</center>
+	<p>
+	end<br>
+	    <br>
+	    16.times do |n|<br>
+	      fizzbuzz(n)<br>
+	    end<br>
+	</p>
+	<center>
+    <br>
+    <br>
+    <h2>Output</h2>
+    <p class='lead'>{{output}}</p>
+    <br>
+
+	<div class="row">
+	<div class="col-lg-5">
+	</div>
+	<div class="col-lg-2">
+	    <div class="alert alert-success text-center" role="alert">
+	  		<strong class='lead'>{{status}}</strong>
+		</div>
+		<br>
+		<br>
+		<button type="button" class="btn btn-primary btn-lg text-center">Next coding challenge >></button>
+	</div>
+	<div class="col-lg-5">
+	</div>
+	</center>
+	</div>
+    </center>
+    
+{% endblock %}
