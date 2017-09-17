@@ -50,7 +50,7 @@ def main():
                 return redirect(url_for('results', filename=filename))
 
         # if request is a get
-        return render_template('index.html', title='Welcome')
+        return render_template('index.html', title='Whiteboard to Code')
 
     @app.route("/results/<filename>")
     def results(filename):
