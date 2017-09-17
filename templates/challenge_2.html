@@ -1,6 +1,6 @@
 {% extends "layout.html" %}
 {% block body %}
-	 <!-- Intro Header -->
+     <!-- Intro Header -->
     <header class="intro">
         <div class="intro-body">
             <div class="container">
@@ -8,6 +8,18 @@
                     <div class="col-md-8 col-md-offset-2">
                         <h1 class="brand-heading">Whiteboard To Code</h1>
                         <h2 class="lead">Challenge #2 </p>
+                        <p style="text-align: left;"># Coding Challenge: <br>
+                        # Print Fizz if number is divisible by 3 <br>
+                        # Print Buzz if number is divisible by 5 <br>
+                        <br>
+                        def fizzbuzz(num) <br>
+                        # Write Code Here   <br>
+                        end<br>
+                        <br>
+                        16.times do |n|<br>
+                          fizzbuzz(n)<br>
+                        end<br>
+                    </p>
                     </div>
                 </div>
             </div>
@@ -16,36 +28,23 @@
 <!-- About Section -->
     <div class="container">
         <div class="row">
+
             <div class="col-lg-8 text-center">
                 
-                <p class="lead"># Coding Challenge: <br>
-                    # Print Fizz if number is divisible by 3 <br>
-                    # Print Buzz if number is divisible by 5 <br>
-                    <br>
-                    def fizzbuzz(num) <br>
-                    # Write Code Here   <br>
-                    end<br>
-                    <br>
-                    16.times do |n|<br>
-                      fizzbuzz(n)<br>
-                    end<br>
-                    </p>
-                <h3 class="mt-5">Upload a picture of the written code</h3>
-                <img src="/static/images/ruby-helloworld.jpg" style="max-width:40%;">
-             	<br>
+                <br>
                 <br>
                 <p class="lead">Upload or take a picture. Any picture you'd like. Ensure the code is facing the camera and is zoomed in enough.</p>
                 <center>
                 <form action="" method=post enctype=multipart/form-data>
         <!-- <input type=file name=file> -->
-		        <input class="btn" type=file name=file accept="image/*;capture=camera" value="Take a picture">
- 				<br>
+                <input class="btn" type=file name=file accept="image/*;capture=camera" value="Take a picture">
+                <br>
 
-		        <div class="custom-submit-btn-div">
-		        <input class="btn btn-primary glyphicon glyphicon-menu-right" type="submit" value="Submit">
-		        </div>
-		        </center>
-		    </form>
+                <div class="custom-submit-btn-div">
+                <input class="btn btn-primary glyphicon glyphicon-menu-right" type="submit" value="Submit">
+                </div>
+                </center>
+            </form>
             </div>
         </div>
 </div>

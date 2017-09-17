@@ -93,7 +93,7 @@ def main():
                 f.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
                 return redirect(url_for('results_challenge', filename=filename))
 
-        return render_template('challenge_2.html', tittle='Challenge')
+        return render_template('challenge_2.html', title='Challenge')
 
     @app.route("/results/challenge/<filename>")
     def results_challenge(filename):
