@@ -1,0 +1,6 @@
+# Coding Challenge:
+# Print Fizz if number is divisible by 3
+# Print Buzz if number is divisible by 5
+
+
+def fizzbuzz(num)

@@ -1,0 +1,6 @@
+end
+
+
+16.times do |n|
+  fizzbuzz(n)
+end
