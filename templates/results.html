@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+{% block body %}
+	<center>
+	<br>
+    <h2>Input</h2>
+    <img src='{{image_src}}' style='max-width:500px; max-height:400px; image-orientation: from-image;'>
+    <br>
+    <br>
+    <h2>Output</h2>
+    <p class='lead'>{{output}}</p>
+    <br>
+
+	<div class="row">
+	<div class="col-lg-5">
+	</div>
+	    <div class="alert alert-success col-lg-2 text-center" role="alert">
+	  		<strong class='lead'>{{status}}</strong>
+		</div>
+	<div class="col-lg-5">
+	</div>
+	</center>
+	</div>
+    </center>
+    
+{% endblock %}
