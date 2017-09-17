@@ -71,9 +71,19 @@ def main():
             f.write(text)
 
         out, err = ruby(ruby_f)
+        if err:
+            status = 'Failure'
+            resp = err
+        else:
+            status = 'Failure'
+            resp = out
+
         print out
         print err
-        return json.dumps({"out": out, "err": err}), 200
+        return render_template('results.html', title="results",
+                                image_src=url_for('static', filename='images/uploads/current'),
+                                output=out,
+                                status=status)
 
     app.run(host='0.0.0.0', port=80)
 
