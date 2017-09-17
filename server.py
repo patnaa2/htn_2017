@@ -96,6 +96,7 @@ def main():
 
         return render_template('challenge_2.html', title='Challenge')
 
+    @app.route("/results_challenge/<filename>", methods=['GET', 'POST'])
     def results_challenge(filename):
         # for linda
         if not prod:
